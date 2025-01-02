@@ -19,7 +19,7 @@ class ImageConverterUtil {
       .toBuffer();
   }
 
-  static async thumbnail(buffer, sizeWidth) {
+  static async thumbnail(buffer, sizeWidth = 250) {
     return await sharp(buffer).resize({ width: sizeWidth }).withMetadata().toBuffer();
   }
 

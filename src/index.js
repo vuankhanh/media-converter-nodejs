@@ -11,6 +11,7 @@ app.post('/resize', upload.single('image'), async (req, res) => {
   const file = req.file;
   try {
     const fileConverted = await ImageService.convertImage(file);
+    console.log(fileConverted);
     
     res.contentType('image/webp');
     res.send(fileConverted);
