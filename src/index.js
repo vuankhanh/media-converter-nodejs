@@ -11,8 +11,6 @@ app.post('/resize', upload.single('image'), async (req, res) => {
   const file = req.file;
   try {
     const fileConverted = await ImageService.convertImage(file);
-    console.log(fileConverted);
-    
     res.contentType('image/webp');
     res.send(fileConverted);
   } catch (error) {
@@ -25,7 +23,6 @@ app.post('/thumbnail', upload.single('image'), async (req, res) => {
   const sizeWidth = req.query.sizeWidth || 250;
   try {
     const fileConverted = await ImageService.thumbnail(file, sizeWidth);
-
     res.contentType('image/webp');
     res.send(fileConverted);
   } catch (error) {
