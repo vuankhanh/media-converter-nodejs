@@ -1,10 +1,18 @@
 const express = require('express');
 const multer = require('multer');
 
+const logger = require('./middlware/logger');
+
 const ImageService = require('./service/image.service');
 const SortUtil = require('./util/sort.util');
 
 const app = express();
+
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`); 
+  next();
+});
+
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.post('/resize', upload.single('image'), async (req, res) => {
